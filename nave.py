@@ -1,12 +1,50 @@
+import pygame as py
+
 class Nave:
     def __init__(self, x, y):
-        pass
+        self.x = x
+        self.y = y
+        self.velocidad = 5
+        self.vida = 100
+        self.imagen = py.image.load("sprite de la nave")
+        self.imagen = py.transform.scale(self.imagen,(40, 40))
+        self.rect = self.imagen.get_rect()
+        self.rect.x = self.x
+        self.rect.y =self.y
+        self.municion_parabola_restante = 10
+        self.municion_canonica_restante = 5
 
-    def mover(self, teclas):
-        pass
+    def mover(self, teclas, limite_ancho, limite_alto):
+        if teclas[py.K_UP] and self.y > 0:
+            self.y -= self.velocidad
+        if teclas[py.K_DOWN] and self.y < limite_alto - self.rect.height:
+            self.y += self.velocidad
+        if teclas[py.K_LEFT] and self.x > 0:
+            self.x -= self.velocidad
+        if teclas[py.K_RIGHT] and self.x < limite_ancho - self.rect.width:
+            self.x += self.velocidad
+
+        self.rect.x = self.x
+        self.rect.y = self.y
+
+    def puede_disparar_parabolica(self):
+        if self.municion_parabola_restante > 0:
+            self.municion_parabola_restante -= 1
+            return True
+        return False
+
+    def puede_disparar_canonica(self):
+        if self.municion_canonica_restante > 0:
+            self.municion_canonica_restante -= 1
+            return True
+        return False
+
 
     def recibir_dano(self, cantidad):
-        pass
+        self.vida -= cantidad
+        if self.vida < 0:
+            self.vida = 0
+        
 
     def dibujar(self, pantalla):
-        pass
+        pantalla.blit(self.imagen, (self.rect.x, self.rect.y))
