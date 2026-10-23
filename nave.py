@@ -6,8 +6,8 @@ class Nave:
         self.y = y
         self.velocidad = 5
         self.vida = 100
-        self.imagen = py.image.load("sprite de la nave")
-        self.imagen = py.transform.scale(self.imagen,(40, 40))
+        self.imagen = py.image.load("img/sprite_nave.png")
+        self.imagen = py.transform.scale(self.imagen,(100, 100))
         self.rect = self.imagen.get_rect()
         self.rect.x = self.x
         self.rect.y =self.y
@@ -33,7 +33,7 @@ class Nave:
             return True
         return False
 
-    def puede_disparar_canonica(self):
+    def puede_disparar_conica(self):
         if self.municion_canonica_restante > 0:
             self.municion_canonica_restante -= 1
             return True
