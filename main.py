@@ -75,13 +75,13 @@ def _mover_nave(nave, teclas):
 
 
 def _iniciar_partida():
-    nave = Nave(ANCHO // 2 - 20, ALTO - 80)
+    nave = Nave(ANCHO // 2 - 50, ALTO - 110)
     if not hasattr(nave, "vida"):
         nave.vida = VIDA_INICIAL_NAVE
     if not hasattr(nave, "x"):
-        nave.x = ANCHO // 2 - 20
+        nave.x = ANCHO // 2 - 50
     if not hasattr(nave, "y"):
-        nave.y = ALTO - 80
+        nave.y = ALTO - 110
 
     gestor_oleadas = GestorOleadas()
     numero_oleada = 1
@@ -177,10 +177,10 @@ def main():
                     continue
                 if hasattr(proyectil, "x") and hasattr(proyectil, "y"):
                     if (
-                        proyectil.x < -50
-                        or proyectil.x > ANCHO + 50
-                        or proyectil.y < -50
-                        or proyectil.y > ALTO + 50
+                        proyectil.x < -80
+                        or proyectil.x > ANCHO + 80
+                        or proyectil.y < -80
+                        or proyectil.y > ALTO + 80
                     ):
                         continue
                 municiones_vivas.append(proyectil)
