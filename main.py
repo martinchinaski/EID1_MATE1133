@@ -99,6 +99,13 @@ def main():
     reloj = pygame.time.Clock()
     hud = HUD()
 
+    try:
+        fondo_mar = pygame.image.load("img/fondo_mar.png").convert()
+        fondo_mar = pygame.transform.scale(fondo_mar, (ANCHO, ALTO))
+    except Exception:
+        fondo_mar = None
+    y_fondo = 0
+
     (
         nave,
         gestor_oleadas,
@@ -153,6 +160,7 @@ def main():
                             municiones.append(MunicionConica(cx_disparo, ny))
 
         if estado == "jugando":
+            y_fondo = (y_fondo + 2) % ALTO
             if cooldown_disparo_basico > 0:
                 cooldown_disparo_basico -= 1
             if cooldown_dano_nave > 0:
@@ -250,7 +258,11 @@ def main():
                 else:
                     estado = "victoria"
 
-        pantalla.fill(COLOR_MAR)
+        if fondo_mar is not None:
+            pantalla.blit(fondo_mar, (0, y_fondo))
+            pantalla.blit(fondo_mar, (0, y_fondo - ALTO))
+        else:
+            pantalla.fill(COLOR_MAR)
 
         for proyectil in municiones:
             proyectil.dibujar(pantalla)
