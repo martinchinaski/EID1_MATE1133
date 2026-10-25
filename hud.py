@@ -135,6 +135,19 @@ class HUD:
         rect_controles = sup_controles.get_rect(center=(ANCHO // 2, ALTO // 2 + 65))
         pantalla.blit(sup_controles, rect_controles)
 
+    def dibujar_anuncio(self, pantalla, numero_oleada):
+        if numero_oleada >= 4:
+            texto = "¡JEFE FINAL!"
+            color = COLOR_ROJO
+        else:
+            texto = f"OLEADA {numero_oleada}"
+            color = COLOR_AMARILLO
+        sombra = self.fuente_titulo.render(texto, True, COLOR_NEGRO)
+        superficie = self.fuente_titulo.render(texto, True, color)
+        rect = superficie.get_rect(center=(ANCHO // 2, ALTO // 2))
+        pantalla.blit(sombra, (rect.x + 3, rect.y + 3))
+        pantalla.blit(superficie, rect)
+
     def dibujar_game_over(self, pantalla):
         self._dibujar_pantalla_final(
             pantalla,

@@ -7,8 +7,10 @@ class MunicionBasica:
         self.y = y
         self.velocidad = -7
         self.activa = True
+        self.tipo = "basica"
         self.imagen = py.image.load("img/sprite_municion_basica.png")
-        self.imagen = py.transform.scale(self.imagen, (10, 20))
+        self.imagen = self.imagen.subsurface(self.imagen.get_bounding_rect())
+        self.imagen = py.transform.scale(self.imagen, (8, 22))
         self.rect = self.imagen.get_rect()
         self.rect.center = (self.x, self.y)
 
@@ -28,8 +30,10 @@ class MunicionParabolica:
         self.y = y
         self.t = 0
         self.activa = True
+        self.tipo = "parabolica"
         self.imagen = py.image.load("img/sprite_municion_parabolica.png")
-        self.imagen = py.transform.scale(self.imagen, (10, 20))
+        self.imagen = self.imagen.subsurface(self.imagen.get_bounding_rect())
+        self.imagen = py.transform.scale(self.imagen, (12, 26))
         self.rect = self.imagen.get_rect()
         self.rect.center = (self.x, self.y)
 
@@ -51,8 +55,10 @@ class MunicionConica:
         self.y = y
         self.t = 0
         self.activa = True
+        self.tipo = "conica"
         self.imagen = py.image.load("img/sprite_municion_canonica.png")
-        self.imagen = py.transform.scale(self.imagen, (20, 20))
+        self.imagen = self.imagen.subsurface(self.imagen.get_bounding_rect())
+        self.imagen = py.transform.scale(self.imagen, (16, 34))
         self.rect = self.imagen.get_rect()
         self.rect.center = (self.x, self.y)
 

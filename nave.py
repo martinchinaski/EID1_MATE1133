@@ -7,7 +7,10 @@ class Nave:
         self.velocidad = 5
         self.vida = 100
         self.imagen = py.image.load("img/sprite_nave.png")
-        self.imagen = py.transform.scale(self.imagen,(100, 100))
+        self.imagen = self.imagen.subsurface(self.imagen.get_bounding_rect())
+        alto = 110
+        ancho = int(self.imagen.get_width() * alto / self.imagen.get_height())
+        self.imagen = py.transform.scale(self.imagen, (ancho, alto))
         self.rect = self.imagen.get_rect()
         self.rect.x = self.x
         self.rect.y =self.y
